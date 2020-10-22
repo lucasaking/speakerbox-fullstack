@@ -1,0 +1,38 @@
+{% extends 'users/detail.html' %}
+
+{% block user_details %}
+
+<div class="bg"></div>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <ul class="list-group no-hover" id="messages">
+            {% for msg in user.message_liked %}
+            <li class="list-group-item">
+                <a href="/messages/{{ msg.id }}" class="messages-link">
+                <a href="/users/{{ msg.user.id }}"></a>
+                    <img src="{{ msg.user.image_url }}" alt="" class="timeline-image">
+                </a>
+                <div class="message-area">
+                    <div class="message-heading">
+                        <a href="/users/{{ msg.user.id }}">@{{ msg.user.username }}</a>
+                        <p>{{ msg.text }}</p>
+                        {% if user.id == g.user.id %}
+                        <!-- <form method="POST" action="/messages/{{ msg.id }}/like" class="messages-like">
+                            <button class="btn btn-sm btn-primary"><i class="fa fa-thumbs-up"></i></button>
+                        </form>
+                        {% elif g.user.is_following(msg.user) %} -->
+                        <form method="POST" action="/messages/{{ msg.id }}/likes">         
+                                <div class="likebtn"><button class="likebtn"><i class="far fa-thumbs-up"><a href="/users/{{ msg.user.id }}/likes"></a></i></button></div>
+                        </form>
+                        {% endif %}
+                    </div>
+                    <!-- <p class="single-message">{{ msg.text }}</p>
+                    <span class="text-muted">{{ msg.timestamp.strftime('%d %B %Y') }}</span> -->
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
