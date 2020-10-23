@@ -1,6 +1,0 @@
-MAIN PAGE
-
-Header - Light Blue // Consistent Light Blue on all HTMLS
-
-Profile pictures - 2PX Outline on image border
-
