@@ -163,6 +163,7 @@ nav + .container {
   border-radius: 100%;
   display: block;
   margin-left: -15px;
+  bottom: 50px;
 }
 
 #profile-image {
@@ -568,12 +569,15 @@ p.card-bio {
     /* background-color: darkblue;  */
     color: darkblue;
     text-shadow: black;
+    background-color: whitesmoke;
+    font-size: 10px;
     opacity: 0.8;
     transition: 0.3s;
     margin-left: auto;
     margin-right: auto;
     table-layout: fixed;
     border-collapse: collapse;
+    border: 1px black solid;
     /* position:relative; */
 }
 
@@ -582,5 +586,77 @@ p.card-bio {
     margin-right: auto;
     table-layout: fixed;
     border-collapse: collapse;
+    color: darkblue;
+    background-color: rgb(227, 227, 255);
     opacity: 1;
+    font-size: 18px;
+    border: 1.9px black solid;
+}
+
+.dislikebtn {
+    border-radius: 80px; 
+    /* background-color: darkblue;  */
+    color: darkblue;
+    text-shadow: black;
+    /* background-color:rgb(227, 227, 255); */
+    background-color:red;
+    font-size: 10px;
+    opacity: 0.8;
+    transition: 0.3s;
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border: 1px black solid;
+    /* position:relative; */
+}
+
+.dislikebtn:hover {
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: fixed;
+    border-collapse: collapse;
+    color: darkblue;
+    /* background-color: whitesmoke; */
+    background-color: red;
+    opacity: 1;
+    font-size: 18px;
+    border: 1.9px black solid;
+}
+
+.fontstuff{
+  background-color:rgb(255, 255, 255); 
+  border-radius: 0px; 
+  margin-right: 100px; 
+  margin-top: 50px; 
+  font-size: 16px;
+  transition: 0.3s;
+  padding-left:50px;
+  padding-right: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  opacity: 60%;
+  width:500px;
+  word-wrap: break-word;
+}
+
+
+.fontstuff:hover{
+  background-color:rgb(185, 235, 255); 
+  border-radius: 15px; 
+  margin-right: 100px; 
+  margin-top: 50px; 
+  font-size: 16px;
+  padding-left:50px;
+  padding-right: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  opacity: 100%;
+  width:500px;
+  word-wrap: break-word;
+}
+
+.breakline {
+  width:400px;
+  word-wrap: break-word;
 }

@@ -5,7 +5,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
 
 from forms import UserAddForm, LoginForm, MessageForm, UserEditForm
-from models import db, connect_db, User, Message
+from models import db, connect_db, User, Message, LikePost
 
 CURR_USER_KEY = "curr_user"
 
@@ -18,9 +18,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = (
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
-app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = True
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "it's a secret")
-toolbar = DebugToolbarExtension(app)
+# toolbar = DebugToolbarExtension(app)
 
 connect_db(app)
 
@@ -208,7 +208,6 @@ def stop_following(follow_id):
 def profile():
     """Update profile for current user."""
 
-    # IMPLEMENT THIS // COMPLETED 
     if not g.user:
         flash("Unauthorized", "danger")
         return redirect('/')
@@ -298,6 +297,10 @@ def messages_destroy(message_id):
     return redirect(f"/users/{g.user.id}")
 
 
+##############################################################################
+# Like Routes:
+
+
 @app.route('/users/<int:user_id>/likes', methods=["GET"])
 def show_likes(user_id):
 
@@ -305,12 +308,10 @@ def show_likes(user_id):
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
-    user = User.query.get_or_404(user_id)
-
-    return render_template('users/likes.html', user=user)
+    return render_template('users/likes.html', user=g.user)
 
 
-@app.route('/messages/<int:message_id>/likes', methods=["POST"])
+@app.route('/messages/<int:message_id>/like', methods=["POST"])
 def like_post(message_id):
     """Like a message."""
 
@@ -318,17 +319,16 @@ def like_post(message_id):
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
-    message_liked = Message.query.get(message_id)
+    message_liked = Message.query.get_or_404(message_id)
 
     if message_liked.user_id == g.user.id:
         return abort(403)
 
-    # if message_liked in g.user.message_liked:
-    #     g.user.message_liked.remove(message_liked)
-    # else:
+    if message_liked in g.user.message_liked:
+        g.user.message_liked.remove(message_liked)
+    else:
         g.user.message_liked.append(message_liked)
 
-    # db.session.delete(message_liked)
     db.session.commit()
 
     return redirect("/")

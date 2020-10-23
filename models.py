@@ -73,7 +73,7 @@ class User(db.Model):
         nullable=False,
     )
 
-    messages = db.relationship('Message', order_by='Message.timestamp.desc()')
+    messages = db.relationship('Message')
 
     followers = db.relationship(
         "User",
@@ -88,6 +88,8 @@ class User(db.Model):
         primaryjoin=(Follows.user_following_id == id),
         secondaryjoin=(Follows.user_being_followed_id == id)
     )
+
+    message_liked = db.relationship('Message', secondary='likes')
 
     def __repr__(self):
         return f"<User #{self.id}: {self.username}, {self.email}>"
@@ -204,14 +206,12 @@ class LikePost(db.Model):
 
     user_id = db.Column(
         db.Integer,
-        db.ForeignKey('users.id', ondelete="cascade"),
+        db.ForeignKey('users.id', ondelete="CASCADE"),
         nullable=False,
     )
 
     message_id = db.Column(
         db.Integer,
-        db.ForeignKey('messages.id', ondelete="cascade"),
+        db.ForeignKey('messages.id', ondelete="CASCADE"),
         nullable=False,
     )
-
-    user = db.relationship('User')

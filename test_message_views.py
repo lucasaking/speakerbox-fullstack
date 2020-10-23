@@ -8,7 +8,7 @@
 import os
 from unittest import TestCase
 
-from models import db, connect_db, Message, User
+from models import db, connect_db, Message, User, LikePost
 
 # BEFORE we import our app, let's set an environmental variable
 # to use a different database for tests (we need to do this
@@ -77,7 +77,7 @@ class MessageViewTestCase(TestCase):
             resp = c.post("/messages/new", data={"text": "Hello"})
 
             # Make sure it redirects
-            self.assertEqual(resp.status_code, 200)
+            self.assertEqual(resp.status_code, 302)
 
             msg = Message.query.one()
             self.assertEqual(msg.text, "Hello")
@@ -119,6 +119,7 @@ class MessageViewTestCase(TestCase):
             self.assertIn(m.text, str(resp.data))
 
     def test_invalid_message_show(self):
+        
         with self.client as c:
             with c.session_transaction() as sess:
                 sess[CURR_USER_KEY] = self.testuser.id
