@@ -1,5 +1,6 @@
 import os
 
+import requests
 from flask import Flask, render_template, request, flash, redirect, session, g, abort
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
@@ -333,6 +334,20 @@ def like_post(message_id):
 
     return redirect("/")
 
+##############################################################################
+# GPS location by IP address
+
+
+def get_country(ip_address):
+    """ Get user location """
+    try:
+        response = requests.get("http://ip-api.com/json/{}".format(ip_address))
+        js = response.json()
+        country = js.get('countryCode')
+        return country
+    except Exception:
+        return "Unknown"
+
 
 ##############################################################################
 # Homepage and error pages
@@ -345,7 +360,6 @@ def homepage():
     - anon users: no messages
     - logged in: 100 most recent messages of followed_users
     """
-    # followed_user = User.query.get(follow_id)
 
     if g.user:
         following_user_ids = [follower.id for follower in g.user.following]
@@ -357,7 +371,14 @@ def homepage():
                     .limit(100)
                     .all())
 
-        return render_template('home.html', messages=messages)
+        ip_address = request.remote_addr
+        country = get_country(ip_address)
+
+        g.user.location = country
+        location = g.user.location
+        db.session.commit()
+
+        return render_template('home.html', messages=messages, location=location)
 
     else:
         return render_template('home-anon.html')

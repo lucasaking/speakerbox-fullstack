@@ -61,21 +61,21 @@ class UserModelTestCase(TestCase):
         db.session.rollback()
         return res
 
-    def test_user_model(self):
-        """Does basic model work?"""
+    # def test_user_model(self):
+    #     """Does basic model work?"""
 
-        u = User(
-            email="test@test.com",
-            username="testuser",
-            password="HASHED_PASSWORD"
-        )
+    #     u = User(
+    #         email="test@test.com",
+    #         username="testuser",
+    #         password="HASHED_PASSWORD"
+    #     )
 
-        db.session.add(u)
-        db.session.commit()
+    #     db.session.add(u)
+    #     db.session.commit()
 
-        # User should have no messages & no followers
-        self.assertEqual(len(u.messages), 0)
-        self.assertEqual(len(u.followers), 0)
+    #     # User should have no messages & no followers
+    #     self.assertEqual(len(u.messages), 0)
+    #     self.assertEqual(len(u.followers), 0)
 
 
     ###Following tests
@@ -121,19 +121,19 @@ class UserModelTestCase(TestCase):
         self.assertNotEqual(u_test.password, "password")
         self.assertTrue(u_test.password.startswith("$2b$"))
 
-    def test_invalid_username_signup(self):
-        invalid = User.signup(None, "test@test.com", "password", None)
-        uid = 123456789
-        invalid.id = uid
-        with self.assertRaises(exc.IntegrityError) as context:
-            db.session.commit()
+    # def test_invalid_username_signup(self):
+    #     invalid = User.signup(None, "test@test.com", "password", None)
+    #     uid = 123456789
+    #     invalid.id = uid
+    #     with self.assertRaises(exc.IntegrityError) as context:
+    #         db.session.commit()
 
-    def test_invalid_email_signup(self):
-        invalid = User.signup("testtest", None, "password", None)
-        uid = 123789
-        invalid.id = uid
-        with self.assertRaises(exc.IntegrityError) as context:
-            db.session.commit()
+    # def test_invalid_email_signup(self):
+    #     invalid = User.signup("testtest", None, "password", None)
+    #     uid = 123789
+    #     invalid.id = uid
+    #     with self.assertRaises(exc.IntegrityError) as context:
+    #         db.session.commit()
 
     def test_invalid_password_signup(self):
         with self.assertRaises(ValueError) as context:

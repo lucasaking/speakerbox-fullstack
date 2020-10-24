@@ -23,7 +23,8 @@ body.error-404 {
 /* ======================= Nav */
 
 .navbar {
-  background-color: #fff;
+  background: rgb(0,29,255);
+  background: linear-gradient(90deg, rgba(0,29,255,1) 0%, rgba(136,235,255,1) 100%);
   height: 46px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
   margin-bottom: 1rem;
@@ -107,8 +108,7 @@ nav form.navbar-form {
    different: no search box, the logo is centered, and it has
    a background color.
  */
-
-.onboarding > .navbar {
+.onboarding .navbar {
   background-image: url("/static/images/nav-bg.png");
   background-size: 100% 100%;
 }
@@ -587,7 +587,7 @@ p.card-bio {
     table-layout: fixed;
     border-collapse: collapse;
     color: darkblue;
-    background-color: rgb(227, 227, 255);
+    background-color: rgb(189, 189, 255);
     opacity: 1;
     font-size: 18px;
     border: 1.9px black solid;
@@ -599,7 +599,7 @@ p.card-bio {
     color: darkblue;
     text-shadow: black;
     /* background-color:rgb(227, 227, 255); */
-    background-color:red;
+    background-color:rgb(230, 163, 163);
     font-size: 10px;
     opacity: 0.8;
     transition: 0.3s;
@@ -618,15 +618,15 @@ p.card-bio {
     border-collapse: collapse;
     color: darkblue;
     /* background-color: whitesmoke; */
-    background-color: red;
+    background-color: rgb(238, 51, 51);
     opacity: 1;
     font-size: 18px;
     border: 1.9px black solid;
 }
 
 .fontstuff{
-  background-color:rgb(255, 255, 255); 
-  border-radius: 0px; 
+  background-color:rgb(238, 255, 255); 
+  border-radius: 15px; 
   margin-right: 100px; 
   margin-top: 50px; 
   font-size: 16px;
@@ -643,7 +643,7 @@ p.card-bio {
 
 .fontstuff:hover{
   background-color:rgb(185, 235, 255); 
-  border-radius: 15px; 
+  border-radius: 40px; 
   margin-right: 100px; 
   margin-top: 50px; 
   font-size: 16px;

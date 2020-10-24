@@ -18,8 +18,7 @@
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
-
-<nav class="navbar navbar-expand">
+<nav class="navbar navbar-light bg-primary navbar-expand">
   <div class="container-fluid">
 
     <div class="navbar-header">
@@ -48,16 +47,16 @@
       {% endblock %}
 
       {% if not g.user %}
-        <li><a href="/signup">Sign up</a></li>
-        <li><a href="/login">Log in</a></li>
+        <li><a href="/signup" style="color: white;">Sign up</a></li>
+        <li><a href="/login" style="color: white;">Log in</a></li>
       {% else %}
         <li>
           <a href="/users/{{ g.user.id }}">
             <img src="{{ g.user.image_url }}" alt="{{ g.user.username }}">
           </a>
         </li>
-        <li><a href="/messages/new">New Message</a></li>
-        <li><a href="/logout">Log out</a></li>
+        <li><a href="/messages/new" style="color: white;">New Message</a></li>
+        <li><a href="/logout" style="color: white;">Log out</a></li>
       {% endif %}
 
     </ul>

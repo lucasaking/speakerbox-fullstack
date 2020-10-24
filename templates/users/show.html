@@ -1,4 +1,5 @@
 {% extends 'users/detail.html' %}
+
 {% block user_details %}
   <div class="col-sm-6">
     <ul class="list-group" id="messages">
@@ -31,16 +32,3 @@
     </ul>
   </div>
 {% endblock %}
-
-<!-- {% if g.user %}
-{% if g.user.is_following(user) %}
-<form method="POST">
-    action="/users/stop-following/{{ user.id }}">
-    <button class="btn btn-primary btn-sm">Unfollow</button>
-</form>
-{% else %}
-<form method="POST" action="/users/follow/{{ user.id }}">
-    <button class="btn btn-outline-primary btn-sm">Follow</button>
-</form>
-{% endif %}
-{% endif %} -->

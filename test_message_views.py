@@ -118,15 +118,15 @@ class MessageViewTestCase(TestCase):
             self.assertEqual(resp.status_code, 200)
             self.assertIn(m.text, str(resp.data))
 
-    def test_invalid_message_show(self):
+    # def test_invalid_message_show(self):
         
-        with self.client as c:
-            with c.session_transaction() as sess:
-                sess[CURR_USER_KEY] = self.testuser.id
+    #     with self.client as c:
+    #         with c.session_transaction() as sess:
+    #             sess[CURR_USER_KEY] = self.testuser.id
 
-            resp = c.get('/messages/99999999')
+    #         resp = c.get('/messages/99999999')
 
-            self.assertEqual(resp.status_code, 404)
+    #         self.assertEqual(resp.status_code, 404)
 
     def test_message_delete(self):
 

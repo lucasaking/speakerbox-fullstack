@@ -6,23 +6,26 @@
     <div class="col-md-12" id="messages">
         <ul class="list-group no-hover row.full-width" id="messages">
             {% for msg in user.message_liked %}
-            <br>
+            <div class="messages-link"></div>
             <li class="list-group-item">
-                <a href="/messages/{{ msg.id }}" class="messages-link">
+                <a href="/messages/{{ msg.id }}">
                     <a href="/users/{{ msg.user.id }}"></a>
-                    <img src="{{ msg.user.image_url }}" alt="" class="timeline-image" style="margin-left: 50px; display: inline-block">
+                    <img src="{{ msg.user.image_url }}" alt="" class="timeline-image"
+                        style="margin-left: 50px; display: inline-block">
                 </a>
                 <div class="row justify-content-center" style="margin-left:108px;">
                     <div>
-                        <b><a href="/users/{{ msg.user.id }}" style="background-color:rgb(191, 237, 255); padding-left: 10px; padding-right: 10px; border: 1px solid rgb(0, 81, 255); right: 200px; top: 50px; border-radius: 10px; font-size: 20px ;">@{{ msg.user.username }}</a></b>
+                        <b><a href="/users/{{ msg.user.id }}"
+                                style="background-color:rgb(191, 237, 255); padding-left: 10px; padding-right: 10px; border: 1px solid rgb(0, 81, 255); border-radius: 10px; font-size: 20px ;">@{{ msg.user.username }}</a></b>
                         <br>
                         <br>
                         <br>
                         <p class="fontstuff">{{ msg.text }}</p>
                     </div>
                     {% if user.id == g.user.id %}
-                    <form method="POST" action="/messages/{{ msg.id }}/like" class="messages-like">
-                        <div class="likebtn"><button class="{{'likebtn'}}"><i class="fa fa-thumbs-up"></i></button>
+                    <form method="POST" class="messages-like" action="/messages/{{ msg.id }}/like">
+                        <div><button class="dislikebtn"><i
+                                    class="fas fa-thumbs-down"></i></button>
                         </div>
                     </form>
                     {% endif %}
