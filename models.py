@@ -9,6 +9,8 @@ from flask_sqlalchemy import SQLAlchemy
 bcrypt = Bcrypt()
 db = SQLAlchemy()
 
+db.create_all()
+
 
 class Follows(db.Model):
     """Connection of a follower <-> followed_user."""
