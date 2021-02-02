@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Warbler</title>
+  <title>Speaker Box</title>
 
   <link rel="stylesheet"
         href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
@@ -14,7 +14,7 @@
   <link rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
   <link rel="stylesheet" href="/static/stylesheets/style.css">
-  <link rel="shortcut icon" href="/static/favicon.ico">
+  <link rel="shortcut icon" href="/static/images/warbler-logo.png">
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
@@ -24,7 +24,7 @@
     <div class="navbar-header">
       <a href="/" class="navbar-brand">
         <img src="/static/images/warbler-logo.png" alt="logo">
-        <span>Warbler</span>
+        <span style="-webkit-text-stroke-width: 0.75px; -webkit-text-stroke-color: black; color: white; font-size: 130%">Speaker Box</span>
       </a>
     </div>
 
@@ -36,7 +36,7 @@
             <input
                 name="q"
                 class="form-control"
-                placeholder="Search Warbler"
+                placeholder="Search Speaker Box"
                 aria-label="Search"
                 id="search">
             <button class="btn btn-default">
@@ -47,16 +47,16 @@
       {% endblock %}
 
       {% if not g.user %}
-        <li><a href="/signup" style="color: white;">Sign up</a></li>
-        <li><a href="/login" style="color: white;">Log in</a></li>
+        <li><a href="/signup" style="-webkit-text-stroke-width: 0.5px; -webkit-text-stroke-color: black; color: white; font-size: 100%">Sign up</a></li>
+        <li><a href="/login" style="-webkit-text-stroke-width: 0.5px; -webkit-text-stroke-color: black; color: white; font-size: 100%">Log in</a></li>
       {% else %}
         <li>
           <a href="/users/{{ g.user.id }}">
             <img src="{{ g.user.image_url }}" alt="{{ g.user.username }}">
           </a>
         </li>
-        <li><a href="/messages/new" style="color: white;">New Message</a></li>
-        <li><a href="/logout" style="color: white;">Log out</a></li>
+        <li><a href="/messages/new" style="-webkit-text-stroke-width: 0.5px; -webkit-text-stroke-color: black; color: white; font-size: 100%">New Message</a></li>
+        <li><a href="/logout" style="-webkit-text-stroke-width: 0.5px; -webkit-text-stroke-color: black; color: white; font-size: 100%">Log out</a></li>
       {% endif %}
 
     </ul>

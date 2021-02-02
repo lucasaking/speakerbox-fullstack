@@ -3,7 +3,7 @@
 {% block content %}
   <div class="row">
 
-    <aside class="col-md-4 col-lg-3 col-sm-12" id="home-aside">
+    <aside class="col-md-4 col-lg-3 col-sm-12" id="home-aside" style="align-content: center; cursor: pointer;">
       <div class="card user-card">
         <div>
           <div class="image-wrapper">
@@ -43,12 +43,16 @@
           </ul>
         </div>
       </div>
+          <aside>
+            <iframe src="https://open.spotify.com/embed/playlist/4vLRmaGcw0HCNkfGiwP9H5" width="92%" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media" style="justify-content: center; margin-left: 4%; margin-right: 4%; margin-top: 5%; margin-bottom: 5%;"></iframe>
+  </aside>
     </aside>
+    
 
     <div class="col-lg-6 col-md-8 col-sm-12">
       <ul class="list-group" id="messages">
         {% for msg in messages %}
-          <li class="list-group-item">
+          <li class="list-group-item" style="width: 100%;">
             <a href="/messages/{{ msg.id }}" class="message-link">
             <a href="/users/{{ msg.user.id }}">
               <img src="{{ msg.user.image_url }}" alt="" class="timeline-image">
@@ -70,6 +74,5 @@
         {% endfor %}
       </ul>
     </div>
-
   </div>
 {% endblock %}
